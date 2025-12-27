@@ -4,3 +4,4 @@ google-auth-oauthlib
 python-dotenv
 langchain
 langchain-openai
+langchain-core
