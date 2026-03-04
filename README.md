@@ -1,8 +1,9 @@
 
 # 🤖 Gmail CLI AI Utility
 
-A Python command-line tool that integrates Gmail with AI capabilities.  
-It allows users to fetch and analyze Gmail messages directly from the terminal while leveraging AI to summarize or understand email content.
+A Python command-line tool that integrates Gmail with AI capabilities using the Gmail API and OpenAI through LangChain.
+
+It allows users to fetch and analyze Gmail messages directly from the terminal while leveraging AI to summarize and understand email content.
 
 Built with modular classes for easy extension and future AI-powered automation.
 
