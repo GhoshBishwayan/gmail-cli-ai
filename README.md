@@ -1,40 +1,117 @@
 
+# 🤖 Gmail CLI AI Utility
+
+A Python command-line tool that integrates Gmail with AI capabilities.  
+It allows users to fetch and analyze Gmail messages directly from the terminal while leveraging AI to summarize or understand email content.
+
+Built with modular classes for easy extension and future AI-powered automation.
+
 ---
-README for **gmail-cli-ai**
 
-This one should look **more advanced** because it includes AI.
+## 🔧 Features
 
-```markdown
-# Gmail CLI AI
+| Feature | Status |
+|--------|--------|
+| Fetch last N emails | ✔ |
+| Fetch by sender email | ✔ |
+| AI summarize email content | ✔ |
+| AI analyze email intent | ✔ |
+| OAuth-based Gmail authentication | ✔ |
 
-An AI-powered command-line tool that integrates Gmail with intelligent email processing. The application allows users to manage emails from the terminal while leveraging AI to analyze and understand email content.
+---
 
-## Features
+## 🛠 Requirements
 
-- Gmail API integration
-- CLI interface for email management
-- AI-powered email analysis
-- Automatic summarization of emails
-- Intelligent email processing from the terminal
+- Python 3.8+
+- Google API Credentials (`credentials.json`)
+- Gmail API enabled in Google Cloud Console
+- AI API key (depending on provider)
 
-## Tech Stack
+Installed dependencies:
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib openai
 
-- Python
-- Gmail API
-- OAuth2 Authentication
-- AI / LLM integration
-- Command Line Interface (CLI)
 
-## Project Motivation
 
-Managing emails can become overwhelming when inboxes grow large. This project explores how AI can assist in email management by analyzing and summarizing email content directly from the command line.
+## 🚀 Usage
 
-The project combines traditional API-based development with AI-powered automation to build a useful developer productivity tool.
+Run the CLI:
 
-## Installation
 
-Clone the repository:
+python main.py
 
-```bash
-git clone https://github.com/GhoshBishwayan/gmail-cli-ai.git
-cd gmail-cli-ai
+
+Menu interface provides options to:
+
+
+1. Fetch last N mails
+2. Fetch mails by email address
+3. Summarize an email using AI
+4. Analyze email content
+5. Exit
+
+
+
+The AI module processes selected email messages and generates intelligent summaries or insights.
+
+---
+
+## 🔐 Security Notice
+
+Add these to `.gitignore` (already recommended):
+
+
+
+credentials.json
+token.json
+.env
+**pycache**/
+
+
+
+Never upload Gmail credentials or API keys publicly.
+
+---
+
+## 📄 Project Structure
+
+
+
+gmail-cli-ai/
+├── main.py
+├── auth.py
+├── reader.py
+├── ai_processor.py
+├── utils.py
+├── config.py
+├── credentials.json   (ignored)
+├── token.json         (ignored)
+
+
+
+---
+
+## ⭐ Contributions & Ideas
+
+PRs and feature suggestions are welcome.  
+If you use it — consider giving the repo a ⭐.
+
+---
+
+## 👨‍💻 Author
+
+**Bishwayan Ghosh**
+
+GitHub:  
+https://github.com/GhoshBishwayan
+
+✅ Steps:
+
+1. Open your **gmail-cli-ai repo**
+2. Edit **README.md**
+3. **Delete old content**
+4. **Paste this**
+5. Commit
+
+---
+
+
