@@ -43,3 +43,26 @@ class ReplySuggester:
         s1 = (self.prompt | self.llm).invoke({"email_text": email_text, "tone": "professional and direct"}).content
         s2 = (self.prompt | self.llm).invoke({"email_text": email_text, "tone": "professional but warm"}).content
         return s1.strip(), s2.strip()
+    
+    def summarize(self, email_text: str) -> str:
+        
+        # remove links
+        import re
+        email_text = re.sub(r"http\S+", "", email_text) 
+        
+        email_text = email_text[:1000]
+        summary_prompt = PromptTemplate(
+            input_variables=["email_text"],
+            template=(
+                "Summarize the following email in 2-3 short sentences.\n\n"
+                "EMAIL:\n"
+                "{email_text}\n\n"
+                "SUMMARY:"
+            ),
+        )
+
+        summary = (summary_prompt | self.llm).invoke(
+            {"email_text": email_text}
+        ).content
+
+        return summary.strip()

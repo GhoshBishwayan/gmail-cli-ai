@@ -1,6 +1,7 @@
 # reader.py
 
 from __future__ import annotations
+from ai_reply import ReplySuggester
 
 import os
 from typing import Dict, List, Optional
@@ -111,6 +112,7 @@ class GmailReader:
     def __init__(self, auth: GmailAuth):
         self.service = auth.get_service()
         self.categorizer = MailCategorizer()
+        self.suggester = ReplySuggester()
 
     def _fetch_full_messages(self, ids: List[str]) -> List[Dict]:
         full_msgs: List[Dict] = []
@@ -132,6 +134,15 @@ class GmailReader:
         subject = get_header(headers, "Subject")
         body_text = extract_plain_text_from_payload(payload) or ""
 
+        # -------- AI SUMMARY --------
+        summary = ""
+        try:
+            if body_text:
+                summary = self.suggester.summarize(body_text[:1000])
+        except Exception:
+            summary = "Could not generate summary"
+            
+            
         category = self.categorizer.classify(
             from_addr=from_addr or "",
             to_addr=to_addr or "",
@@ -145,6 +156,9 @@ class GmailReader:
         print(f"To: {to_addr}")
         print(f"Subject: {subject}")
         print(f"Category: {category}")
+        if summary:
+            print(f"Summary: {summary}")
+
         print("Body:")
         print(body_text.strip() if body_text.strip() else "(no plain-text body found)")
         print("-" * 60)

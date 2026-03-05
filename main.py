@@ -96,9 +96,20 @@ def _reply_flow(
 
     body_text = extract_plain_text_from_payload(payload) or ""
     email_text = (body_text or msg.get("snippet", "") or "").strip()
+    
     if not email_text:
         email_text = f"From: {frm}\nSubject: {subject}"
 
+    # -------- AI SUMMARY --------
+    try:
+        summary = suggester.summarize(email_text[:1000])
+        print("\n📄 Email Summary:")
+        print(summary)
+        print("-" * 60)
+    except Exception as e:
+        print(f"⚠️ Could not summarize email: {e}")
+        
+        
     print("\nReplying to:")
     print(f"From: {frm}")
     print(f"Subject: {subject}")
